@@ -16,10 +16,11 @@ export const GetStudents = () => async (
     });
 
     const res = await axios.get("http://localhost:8080/students/list/");
+    console.log(res.data.data);
 
     dispatch({
       type: STUDENTS_SUCCESS,
-      payload: res.data,
+      payload: res.data.data,
     });
   } catch (e) {
     console.log(e);
