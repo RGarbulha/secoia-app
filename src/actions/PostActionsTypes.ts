@@ -18,7 +18,7 @@ interface PostFail {
 
 interface PostSuccess {
   type: typeof POSTS_SUCCESS;
-  payload: Post;
+  payload: Post[];
 }
 
 export type PostDispatchTypes = FetchPost | PostFail | PostSuccess;

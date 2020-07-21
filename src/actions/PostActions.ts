@@ -14,7 +14,6 @@ export const GetPost = () => async (dispatch: Dispatch<PostDispatchTypes>) => {
     });
 
     const res = await axios.get("https://jsonplaceholder.typicode.com/posts");
-
     dispatch({
       type: POSTS_SUCCESS,
       payload: res.data,

@@ -8,7 +8,7 @@ import {
 
 interface InitialStateI {
   loading: boolean;
-  post?: Post;
+  posts?: Post[];
 }
 
 const initialState: InitialStateI = {
@@ -31,7 +31,7 @@ const PostReducer = (
     case POSTS_SUCCESS:
       return {
         loading: false,
-        post: action.payload,
+        posts: action.payload,
       };
     default:
       return state;

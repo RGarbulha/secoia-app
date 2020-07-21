@@ -1,23 +1,19 @@
-import React, { useEffect, Dispatch } from 'react';
-import logo from './logo.svg';
+import React from 'react';
 import './App.css';
-import { useSelector, useDispatch } from 'react-redux';
-import { RootStore } from './store';
-import { GetPost } from './actions/PostActions';
+import Posts from './components/PostComponent/Posts';
+
 
 function App() {
-  const dispatch = useDispatch();
 
-  useEffect(() => {
-    dispatch(GetPost());
-    console.log(postState)
-  }, []);
 
-  const postState = useSelector((state: RootStore) => state.post)
+
+
 
   return (
     <div className="App">
-      <h1>test</h1>
+      <h1>POSTS</h1>
+      <hr />
+      <Posts />
     </div>
   );
 }
