@@ -7,6 +7,8 @@ import {
 } from "./StudentActionsTypes";
 import axios from "axios";
 
+const URL_PATH = "https://secoia-api-rest.herokuapp.com/";
+
 export const GetStudents = () => async (
   dispatch: Dispatch<StudentDispatchTypes>
 ) => {
@@ -15,8 +17,7 @@ export const GetStudents = () => async (
       type: FETCH_STUDENTS,
     });
 
-    const res = await axios.get("http://localhost:8080/students/list/");
-    console.log(res.data.data);
+    const res = await axios.get(URL_PATH + "/students/list/");
 
     dispatch({
       type: STUDENTS_SUCCESS,

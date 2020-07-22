@@ -1,0 +1,90 @@
+/* Students.tsx */
+
+.students-row {
+    cursor: pointer;
+}
+
+.students-row:hover {
+    background-color: #eee;
+}
+
+.tool-bar {
+    max-width: 1400px;
+    padding: 0 20px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin: auto;
+    justify-content: space-between;
+}
+
+.tool-column {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 20px;
+}
+
+.tool-column label {
+    font-size: 12px;
+    width: fit-content;
+}
+
+.tool-column input {
+    font-size: 12px;
+    background-color: #eee;
+    border-radius: 5px;
+    border-width: 1px;
+    padding: 0 5px;
+}
+
+.tool-column input:focus, .tool-column select:focus {
+    outline: none !important;
+    border-width: 1px;
+    border-style: solid;
+    border-color: blue;
+}
+
+.tool-column button {
+    outline: none !important;
+    border-width: 1px;
+    border-style: solid;
+    border-radius: 5px;
+}
+
+.tool-column button:hover {
+    border-color: blue;
+    color: blue
+}
+
+/* Student.tsx */
+
+.student-container {
+    display: flex;
+    flex-direction: column;
+    padding-left: 40px;
+    padding-right: 40px;
+    max-width: 900px;
+}
+
+.student-fields {
+    font-weight: bold;
+}
+
+.row {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    border-bottom: 1px #eee solid;
+    padding-bottom: 10px;
+}
+
+.column {
+    margin-top: 5px;
+}
+
+.subtitle h4, .subtitle h3 {
+    padding: 0 30px;
+    border-bottom: 1.5px #ddd solid;
+    width: fit-content;
+    margin: auto;
+}

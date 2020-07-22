@@ -1,17 +1,17 @@
 import React from 'react';
 import './App.css';
-import Posts from './components/PostComponent/Posts';
-import Post from './components/PostComponent/Post';
-import Students from './components/StudentComponents/Students';
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+
+import Header from './components/Header/Header';
+import Students from './components/StudentComponents/Students';
+import Student from './components/StudentComponents/Student';
 
 function Home() {
 
   return (
     <div>
-      <h1>POSTS</h1>
+      <h1>Dashboard</h1>
       <hr />
-      <Posts />
     </div>
   )
 }
@@ -22,10 +22,12 @@ function App() {
   return (
     <div className="App">
       <Router>
+        <Header />
         <Switch>
           <Route exact path="/" component={Home} />
-          <Route exact path="/post/:id" component={Post} />
-          <Route exact path="/students" component={Students} />
+          <Route exact path="/students/" component={Students} />
+          <Route exact path="/students/:page" component={Students} />
+          <Route exact path="/student/:id" component={Student} />
         </Switch>
 
       </Router>

@@ -1,6 +1,7 @@
 export const FETCH_STUDENTS = "FETCH_STUDENTS";
 export const STUDENTS_FAIL = "STUDENTS_FAIL";
 export const STUDENTS_SUCCESS = "STUDENTS_SUCCESS";
+export const STUDENT_SUCCESS = "STUDENTS_SUCCESS";
 
 export type Student = {
   _id: string;
@@ -19,8 +20,9 @@ export type Student = {
   country: string;
   email: string;
   phone: string;
+  partner: string;
   emergencyContact: {
-    type: string;
+    emergencyName: string;
     emergencyPhone: string;
   };
   programDetail: {
@@ -62,9 +64,9 @@ interface StudentFail {
   type: typeof STUDENTS_FAIL;
 }
 
-interface StudentSuccess {
+interface StudentsSuccess {
   type: typeof STUDENTS_SUCCESS;
   payload: Student[];
 }
 
-export type StudentDispatchTypes = FetchStudent | StudentFail | StudentSuccess;
+export type StudentDispatchTypes = FetchStudent | StudentFail | StudentsSuccess;
