@@ -7,7 +7,7 @@ import {
 } from "./StudentActionsTypes";
 import axios from "axios";
 
-const URL_PATH = "https://secoia-api-rest.herokuapp.com/";
+const URL_PATH = "https://secoia-api-rest.herokuapp.com";
 
 export const GetStudents = () => async (
   dispatch: Dispatch<StudentDispatchTypes>
