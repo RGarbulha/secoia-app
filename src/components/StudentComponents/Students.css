@@ -1,5 +1,11 @@
 /* Students.tsx */
 
+.students-main {
+    width: 100vw;
+    padding: 0 10px;
+    overflow: hidden;
+}
+
 .students-row {
     cursor: pointer;
 }
@@ -27,6 +33,7 @@
 .tool-column label {
     font-size: 12px;
     width: fit-content;
+    min-width: 60px;
 }
 
 .tool-column input {
@@ -54,6 +61,22 @@
 .tool-column button:hover {
     border-color: blue;
     color: blue
+}
+
+.students-quantity {
+    width: 100%;
+    justify-content: right;
+    text-align: right;
+}
+
+.students-table {
+    scroll-behavior: auto;
+    overflow: scroll;
+    width: 100vw;
+}
+
+.students-table table tbody tr td {
+    text-align: left;
 }
 
 /* Student.tsx */

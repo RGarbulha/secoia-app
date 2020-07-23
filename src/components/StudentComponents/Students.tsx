@@ -11,19 +11,28 @@ import {
 
 type TParams = { page: string };
 
-export default function Posts({ match }: RouteComponentProps<TParams>) {
+export default function Students({ match }: RouteComponentProps<TParams>) {
 
     const dispatch = useDispatch();
+
+    const history = useHistory();
 
     const [studentsPerRow, setPerRows] = useState(10);
     const [filter, setFilter] = useState({ firstName: "", lastName: "", email: "", partner: "", school: "" });
 
     const changeQty = (e: React.ChangeEvent<HTMLSelectElement>) => setPerRows(Number(e.target.value));
 
-    const changeFilter = (e: React.ChangeEvent<HTMLInputElement>) => setFilter({
-        ...filter,
-        [e.target.name]: e.target.value
-    });
+    let page: number = Number(match.params.page) || 1;
+
+
+    const changeFilter = (e: React.ChangeEvent<HTMLInputElement>) => {
+        history.push("/students/");
+
+        setFilter({
+            ...filter,
+            [e.target.name]: e.target.value
+        })
+    };
 
     const resetFilters = (e: React.MouseEvent<HTMLButtonElement>) => setFilter({ firstName: "", lastName: "", email: "", partner: "", school: "" });
 
@@ -34,8 +43,6 @@ export default function Posts({ match }: RouteComponentProps<TParams>) {
     const MAX_STUDENTS_NUMBER: number = studentsPerRow;
 
     const studentState = useSelector((state: RootStore) => state.students)
-
-    let page: number = Number(match.params.page) || 1;
 
     //Filters here
 
@@ -73,16 +80,18 @@ export default function Posts({ match }: RouteComponentProps<TParams>) {
     // const students = studentState.students && studentState.students.slice(((page * MAX_STUDENTS_NUMBER) - MAX_STUDENTS_NUMBER), (MAX_STUDENTS_NUMBER * page));
     // const students = filtered();
     const studentsFiltered = filtered();
+
+    let STUDENTS_LENGTH: number = studentsFiltered && studentsFiltered.length || 0;
+
     const students = studentsFiltered && studentsFiltered.slice(((page * MAX_STUDENTS_NUMBER) - MAX_STUDENTS_NUMBER), (MAX_STUDENTS_NUMBER * page));
 
-    const STUDENTS_LENGTH: number = studentState.students && studentState.students.length || 0;
 
     const LAST_PAGE = studentState.students && Math.ceil(STUDENTS_LENGTH / MAX_STUDENTS_NUMBER)
 
     const HAS_NEXT = studentState.students && LAST_PAGE == page ? false : true;
 
 
-    const history = useHistory();
+
 
     const redirect = (e: any) => {
         const id = e.target.parentNode.id;
@@ -91,7 +100,7 @@ export default function Posts({ match }: RouteComponentProps<TParams>) {
 
 
     return (
-        <div>
+        <div className="students-main">
             <h1>Students</h1>
 
             <div className="tool-bar my-3">
@@ -121,37 +130,39 @@ export default function Posts({ match }: RouteComponentProps<TParams>) {
                         <option value="10">10</option>
                         <option value="20">20</option>
                         <option value="40">40</option>
-                        <option value="10">60</option>
-                        <option value="10">100</option>
+                        <option value="60">60</option>
+                        <option value="100">100</option>
                     </select>
                 </div>
                 <div className="tool-column">
                     <button onClick={resetFilters}>Reset</button>
                 </div>
             </div>
-            <table className="table">
-                <thead>
-                    <tr>
-                        <th scope="col">First Name</th>
-                        <th scope="col">Last Name</th>
-                        <th scope="col">Email</th>
-                        <th scope="col">Partner</th>
-                        <th scope="col">School</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {students && students.map((student: Student) => (
-                        <tr key={student._id} id={student._id} className="students-row" onClick={redirect}>
-                            <td>{student.firstName}</td>
-                            <td>{student.lastName}</td>
-                            <td>{student.email}</td>
-                            <td>{student.partner}</td>
-                            <td>{student.programDetail.school}</td>
+            <div className="students-table">
+                <table className="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">First Name</th>
+                            <th scope="col">Last Name</th>
+                            <th scope="col">Email</th>
+                            <th scope="col">Partner</th>
+                            <th scope="col">School</th>
                         </tr>
-                    ))}
+                    </thead>
+                    <tbody>
+                        {students && students.map((student: Student) => (
+                            <tr key={student._id} id={student._id} className="students-row" onClick={redirect}>
+                                <td>{student.firstName}</td>
+                                <td>{student.lastName}</td>
+                                <td>{student.email}</td>
+                                <td>{student.partner}</td>
+                                <td>{student.programDetail.school}</td>
+                            </tr>
+                        ))}
 
-                </tbody>
-            </table>
+                    </tbody>
+                </table>
+            </div>
             <div className="container">
                 <nav aria-label="Page navigation ">
                     <ul className="pagination justify-content-center">
@@ -188,6 +199,7 @@ export default function Posts({ match }: RouteComponentProps<TParams>) {
                         }
                     </ul>
                 </nav>
+                <div className="students-quantity"><span><b>Total Results: </b>{STUDENTS_LENGTH}</span></div>
             </div>
         </div >
     )
