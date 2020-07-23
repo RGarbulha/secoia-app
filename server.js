@@ -25,7 +25,7 @@ app.use(express.static('build'));
 
 // Redirect Users to "index.html" if route not accessed using client side routing
 app.use((req, res) => {
-    res.sendFile(path.join(__dirname + "/public/index.html"));
+    res.sendFile(path.join(__dirname + "/build/index.html"));
 });
 
 app.listen(port, () => {
